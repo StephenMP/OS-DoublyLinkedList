@@ -12,9 +12,11 @@
 /* private methods */
 static void print(const NodePtr node, char * (*toString)(const void *));
 
-ListPtr createList(int (*compareTo)(const void *, const void *),
-		char * (*toString)(const void *), void (*freeObject)(const void *)) {
-
+ListPtr createList(
+		int (*compareTo)(const void *, const void *),
+		char * (*toString)(const void *),
+		void (*freeObject)(const void *))
+{
 	/* Initialize the list */
 	ListPtr list;
 	list = (ListPtr) malloc(sizeof(List));
@@ -84,6 +86,7 @@ void addAtFront(ListPtr list, NodePtr node) {
 		list->head = node;
 		list->tail = node;
 	}
+
 	else {
 		list->head->prev = node;
 		list->head = node;
@@ -98,10 +101,12 @@ void addAtRear(ListPtr list, NodePtr node) {
 	list->size++;
 	node->next = NULL;
 	node->prev = list->tail;
+
 	if (list->head == NULL ) {
 		list->head = node;
 		list->tail = node;
 	}
+
 	else {
 		list->tail->next = node;
 		list->tail = node;
@@ -122,6 +127,7 @@ NodePtr removeFront(ListPtr list) {
 		afterHeadNode->prev = NULL;
 		list->head = afterHeadNode;
 	}
+
 	else {
 		list->head = NULL;
 		list->tail = NULL;
